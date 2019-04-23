@@ -8,7 +8,7 @@
     .info-all {
         padding-top:10%; 
         height: 800px;
-        width: 300px;
+        width: 75%;
         color: #606266;
         border: 1px solid #E4E7ED;
         /* -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
@@ -25,8 +25,8 @@
     .head-img {
         border: 5px solid #E4E7ED;
         border-radius: 50%;
-        height: 120px;
-        width: 120px;
+        width: 48%;
+        height: 18%;    
         -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
     }

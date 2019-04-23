@@ -55,6 +55,7 @@
     color: #2c3e50;
     margin-top: 0px;
     position: relative;
+    min-width: 1500px;
   }
 
   .header-fixed {
@@ -71,7 +72,7 @@
   }
 
   .main-size {
-    margin-top: 5%;
+    margin-top: 1%;
     z-index: 99;
   }
-</style>
+</style> 
