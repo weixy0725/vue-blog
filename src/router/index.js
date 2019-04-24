@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/components/Index'
-import draw from '@/components/DrawAndDesign'
+import drawAndDesign from '@/components/DrawAndDesign'
 import literature from '@/components/Literature'
 import travel from '@/components/Travel'
 
@@ -17,7 +17,7 @@ export default new Router({
     },{
       path:'/drawAndDesign',
       name: '插画与设计',
-      component:draw
+      component:drawAndDesign
 
     },{
       path:'/literature',
