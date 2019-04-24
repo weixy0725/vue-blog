@@ -21,11 +21,6 @@
                         <div class="item"><i class="el-icon-view"></i> 535</div>
                         <div class="item"><a href="https://my.oschina.net/u/2478308/blog/1594948#comments"
                                 target="_blank"><i class="el-icon-edit-outline"></i> 6</a></div>
-                        <div class="item"><a href="https://my.oschina.net/u/2478308/blog/write/1594948"><i
-                                    class="el-icon-edit"></i> 编辑</a></div>
-                        <div class="item"><a class="delete-btn"><i class="el-icon-delete"></i> 删除</a>
-                        </div>
-
                     </div>
                 </div>
             </div>

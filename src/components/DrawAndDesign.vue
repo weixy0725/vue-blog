@@ -3,7 +3,13 @@
         <ElRow class="img-row-size" :gutter="20">
             <ElCol :span="8">
                 <div class="img-content">
-                    <img src="../assets/test.jpg" class="img-size"></img>
+                    <a href=""><img src="../assets/test.jpg" class="img-size"></img></a>
+                    <div class="extra">
+                        <div class="item"><a href="https://my.oschina.net/u/2478308?tab=newest&amp;catalogId=3387050"
+                                class="classification"><i class="el-icon-star-off">分类</i></a></div>
+                        <div class="item"><i class="el-icon-view"></i> 535</div>
+                        <div class="item"><a href="" target="_blank"><i class="el-icon-edit-outline"></i> 6</a></div>
+                    </div>
                 </div>
             </ElCol>
             <ElCol :span="8">
@@ -55,5 +61,34 @@
 
     .pagination-class {
         margin-top: 30px;
+    }
+
+    .extra {
+        font-size: .92857143em;
+        margin-top: 2px;
+    }
+
+    .extra .item {
+        display: inline-block;
+        font-size: .92857143em;
+        color: #606266;
+
+    }
+
+    .extra :not(:first-child) {
+        padding-left: 6%;
+    }
+
+    .extra .item a {
+        text-decoration: none;
+        cursor: pointer;
+        color: #606266
+    }
+</style>
+
+<style>
+    .el-pagination.is-background .el-pager li:not(.disabled).active {
+        background-color: cadetblue;
+        color: #FFF;
     }
 </style>
