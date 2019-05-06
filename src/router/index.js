@@ -4,6 +4,7 @@ import index from '@/components/Index'
 import drawAndDesign from '@/components/DrawAndDesign'
 import literature from '@/components/Literature'
 import travel from '@/components/Travel'
+import article from '@/components/Article'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
       path:'/travel',
       name: '旅行杂记',
       component:travel
+    },{
+      path:'/article',
+      name:'文章内容',
+      component:article
+
     }
   ]
 })

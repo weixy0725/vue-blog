@@ -55,6 +55,7 @@
     .test {
         width: 200px;
         margin-left: 10%;
-        margin-top: 30%
+        margin-top: 30%;
+        pointer-events: auto;
     }
 </style>

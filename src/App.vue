@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-      <vue-particles color="#328989" :particleOpacity="0.7" :particlesNumber="80" shapeType="circle" :particleSize="4"
-      linesColor="#dedede" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3"
-      :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push" style="position: absolute; width: 100%;height:100%;">
+      <vue-particles color="#328989" :particleOpacity="0.7" :particlesNumber="90" shapeType="circle" :particleSize="4"
+      linesColor="#328989" :linesWidth="1" :lineLinked="true" :lineOpacity="0.3" :linesDistance="150" :moveSpeed="3"
+      :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push" style="position: fixed; width: 100%;height:100%;z-index=-1">
      </vue-particles>
     <!-- <el-container style="width:100%"> -->
     <el-row style="height:60px">
@@ -21,7 +21,7 @@
             <router-view />
           </el-main>
         </el-col>
-        <el-col :span="5">
+        <el-col :span="5" style="margin-top:1%;">
           <right-Bar></right-Bar>
         </el-col>
         <!-- </el-container>        -->
@@ -54,8 +54,8 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 0px;
-    position: relative;
-    min-width: 1500px;
+    /* position: relative; */
+    min-width: 1000px;
   }
 
   .header-fixed {
@@ -64,15 +64,19 @@
     left: 0;
     top: 0;
     z-index: 100;
+    background-color:#77ac98;
+    pointer-events: none;
   }
 
   .page-size {
     height: 2500px;
     z-index: 99;
+    pointer-events: none;
   }
 
   .main-size {
     margin-top: 1%;
     z-index: 99;
+    pointer-events: none;
   }
 </style> 

@@ -1,129 +1,230 @@
 <template>
-    <div>
+  <div>
+    <ul style="list-style-type: none;">
+      <li v-for="i in list" v-bind:key="i.articleId">
         <el-row class="row-size">
-            <div class="item">
-                <div class="content">
-                    <a class="header" href="https://my.oschina.net/u/2478308/blog/1580589" target="_blank">
-                        <div class="ui label">原创</div>
-                        xxxxxxx 教程
-                    </a>
-                    <div class="description">
-                        <p class="line-clamp">
-                            本例为Spring Boot 简单应用的基础教程，IDE为Eclipse，参考官方reference guide文档。
-                            英文文档地址：https://docs.spring.io/spring-boot/docs/current/reference/pdf/
-                            github上他人翻译的...
-                        </p>
-                    </div>
-                    <div class="extra">
-                        <div class="item"><a href="https://my.oschina.net/u/2478308?tab=newest&amp;catalogId=3387050"
-                                class="classification"><i class="el-icon-document">123学习记录</i></a></div>
-                        <div class="item">2017/12/26 10:42</div>
-                        <div class="item"><i class="el-icon-view"></i> 535</div>
-                        <div class="item"><a href="https://my.oschina.net/u/2478308/blog/1594948#comments"
-                                target="_blank"><i class="el-icon-edit-outline"></i> 6</a></div>
-                    </div>
+          <div class="item">
+            <div class="content">
+              <router-link
+                :to="{path:'/article', query: { articleId: i.articleId }}"
+                class="header"
+                target="_self"
+              >
+                <div v-if="i.isOriginal==1" class="ui label own">原创</div>
+                <div v-if="i.isOriginal==0" class="ui label other">转载</div>
+                {{i.articleName}}
+              </router-link>
+              <div class="description">
+                <router-link
+                  :to="{path:'/article', query: { articleId: i.articleId }}"
+                  style="text-decoration: none;"
+                >
+                  <p class="line-clamp">{{i.articleSummarize}}</p>
+                </router-link>
+              </div>
+              <div class="extra">
+                <div class="item">
+                  <i class="el-icon-star-on"></i>&nbsp;{{i.classification}}
                 </div>
+                <div class="item">{{i.datetime}}</div>
+                <div class="item">
+                  <i class="el-icon-view"></i>&nbsp;{{i.browseTimes}}
+                </div>
+                <div class="item">
+                  <i class="el-icon-chat-line-square"></i>&nbsp;{{i.messageCount}}
+                </div>
+              </div>
             </div>
+          </div>
         </el-row>
-        <el-row class="pagination-class">
-            <el-pagination background layout="prev, pager, next" :total="1000" class="test">
-            </el-pagination>
-        </el-row>
-    </div>
+      </li>
+    </ul>
+    <el-row class="pagination-class">
+      <el-pagination
+        background
+        layout="total,sizes,prev,pager,next,jumper"
+        :total="total"
+        :current-page="pageNumber"
+        :page-sizes="[10, 20, 30]"
+        :page-size="pageSize"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      ></el-pagination>
+    </el-row>
+  </div>
 </template>
 
+<script>
+export default {
+  name: "index",
+  data() {
+    return {
+      getArticles: this.host + "/articleManagement/articles",
+      list: [],
+      typeId:1,
+      classificationId:"",
+      total: 0,
+      pageNumber: 1,
+      pageSize: 10
+    };
+  },
+  methods: {
+    handleSizeChange(val) {
+      this.pageSize = val;
+      this.search();
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      this.pageNumber = val;
+      this.search();
+      console.log(`当前页: ${val}`);
+    },
+    search() {
+      let formdata = new FormData();
+      formdata.append("typeId", this.typeId);
+      if(this.classificationId!=""){
+           formdata.append("classificationId", this.classificationId);
+      }
+      formdata.append("pageIndex ", this.pageNumber);
+      formdata.append("pageSize ", this.pageSize);
+      this.$axios({
+        url: this.getArticles,
+        data: formdata,
+        method: "get"
+      }).then(res => {
+        if (res.data.result.code == 0) {
+          this.list = res.data.array;
+          this.total = res.data.object.count;
+        } else if (res.data.result.code == 1) {
+          this.$message({
+            type: "warning",
+            message: res.data.result.info
+          });
+        }else if(res.data.result.code == -1){
+         this.$message({
+            type: "warning",
+            message: res.data.result.developInfo
+          });
+
+        }
+      });
+    }
+  },
+  mounted() {
+    this.search();
+  }
+};
+</script>
+
 <style scoped>
-    .row-size {
-        height: 200px;
-        color: #606266;
-        border: 1px solid #E4E7ED;
-        -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
-        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
-        background: #FFF;
-        border-radius: 4px;
-        line-height: 30px;
-        margin-top: 2em;
-    }
+.row-size {
+  height: 200px;
+  color: #606266;
+  border: 1px solid #e4e7ed;
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-radius: 4px;
+  line-height: 30px;
+  margin-top: 2em;
+  pointer-events: auto;
+}
 
-    .pagination-class {
-        margin-top: 30px;
-    }
+.pagination-class {
+  margin-top: 30px;
+  pointer-events: auto;
+}
 
-    a.header {
-        display: block;
-        text-decoration: none;
-        cursor: pointer;
-        margin-top: 10px;
+a.header {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
 
-    }
+.ui.label {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: baseline;
+  margin: 0 0.14285714em;
+  background-image: none;
+  padding: 0.5833em 0.833em;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 0.8em;
+  border: 0 solid transparent;
+  border-radius: 0.14285714rem;
+  -webkit-transition: background 0.1s ease;
+  transition: background 0.1s ease;
+  /* background-color: #77ac98 !important;
+        border-color: #77ac98 !important; */
+  color: #fff !important;
+}
 
-    .ui.label {
-        display: inline-block;
-        line-height: 1;
-        vertical-align: baseline;
-        margin: 0 .14285714em;
-        background-image: none;
-        padding: .5833em .833em;
-        text-transform: none;
-        font-weight: 400;
-        font-size: 0.8em;
-        border: 0 solid transparent;
-        border-radius: .14285714rem;
-        -webkit-transition: background .1s ease;
-        transition: background .1s ease;
-        background-color: cadetblue !important;
-        border-color: cadetblue !important;
-        color: #fff !important;
-    }
+.ui.label.own {
+  background-color: #77ac98 !important;
+  border-color: #77ac98 !important;
+}
 
-    .header:not(.ui) {
-        font-size: 1.1em;
-        color: rgba(0, 0, 0, .85);
-        font-weight: 700;
-    }
+.ui.label.other {
+  background-color: #deab8a !important;
+  border-color: #deab8a !important;
+}
 
-    .description {
-        display: block;
-        margin-top: 2em;
-        max-width: auto;
-        font-size: 1em;
-        line-height: 1.4285em;
-        color: rgba(0, 0, 0, .87);
-    }
+.header:not(.ui) {
+  font-size: 1.1em;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 700;
+}
 
-    .line-clamp {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-        margin: 0 0 .5em;
-    }
+.description {
+  display: block;
+  margin-top: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
+  max-width: auto;
+  font-size: 1em;
+  line-height: 1.4285em;
+  color: rgba(0, 0, 0, 0.87);
+}
 
-    .extra {
-     font-size: .92857143em;
-     margin-top: 2em;
-    
-    }
+.line-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin: 0 0 0.5em;
+  color: #000;
+}
 
-    .extra .item {
-        display: inline-block; 
-        font-size: .92857143em;
-        color: #606266;
-        padding-left:0.5em; 
-    }
+.extra {
+  font-size: 0.92857143em;
+  margin-top: 2em;
+}
 
-    .extra .item a{
+.extra .item {
+  display: inline-block;
+  font-size: 0.92857143em;
+  color: #606266;
+  padding-left: 0.6em;
+}
+
+/* .extra .item a{
         text-decoration: none;
         cursor: pointer;
         color: #606266
         
-    }
+    } */
 
+.extra .item i {
+  color: #6d8346;
+  font-size: 1.2em;
+}
 </style>
 
 <style>
-    .el-pagination.is-background .el-pager li:not(.disabled).active {
-        background-color: cadetblue;
-        color: #FFF;
-    }
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background-color: #77ac98;
+  color: #fff;
+}
 </style>
