@@ -7,21 +7,27 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import VueParticles from 'vue-particles'
 import axios from 'axios'
+import store from './store/store'
+import Vuex from 'vuex'
 
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
-Vue.use(VueParticles)  
+Vue.use(VueParticles) 
+Vue.use(Vuex) 
 
 Vue.prototype.$axios = axios;
 
-Vue.prototype.host = '/api'
+Vue.prototype.host = '/api';
+
+window.router=router
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

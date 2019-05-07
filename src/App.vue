@@ -13,12 +13,12 @@
     </el-row>
     <el-row class="page-size">
         <!-- <el-container class="page-size"> -->
-        <el-col :span="5">
+        <el-col :span="4">
           <side-bar></side-bar>
         </el-col>
-        <el-col :span="14">
+        <el-col :span="15">
           <el-main class="main-size">
-            <router-view />
+            <router-view v-if="isRouterAlive"/>
           </el-main>
         </el-col>
         <el-col :span="5" style="margin-top:1%;">
@@ -35,6 +35,7 @@
   import header from './components/common/Header.vue';
   import sideBar from './components/common/SideBar.vue';
   import rightBar from './components/common/RightBar.vue';
+import { functionDeclaration } from '@babel/types';
 
   export default {
     name: 'App',
@@ -42,6 +43,26 @@
       "headerNav": header,
       "sideBar": sideBar,
       "rightBar": rightBar
+    },
+    data(){
+      return {
+        isRouterAlive:true
+      }
+    },
+    provide(){
+      return{
+        reload:this.reload
+      }
+    },
+    computed:{
+    },
+    methods:{
+         reload(){
+             this.isRouterAlive=false;
+             this.$nextTick(function(){
+                this.isRouterAlive=true
+             })
+         }
     }
   }
 </script>
@@ -55,7 +76,7 @@
     color: #2c3e50;
     margin-top: 0px;
     /* position: relative; */
-    min-width: 1000px;
+    min-width: 900px;
   }
 
   .header-fixed {

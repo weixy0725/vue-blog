@@ -55,7 +55,7 @@
 
 .el-menu-item.is-active{
   background-color: #77ac98;
-  border-bottom: 2px solid #fcf16e;
+  border-bottom: 2.5px solid #fcf16e;
   color:#fcf16e;
 }
 

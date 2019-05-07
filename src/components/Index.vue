@@ -55,20 +55,28 @@
 </template>
 
 <script>
+import {mapMutations,mapGetters} from 'vuex'
+
 export default {
   name: "index",
   data() {
     return {
-      getArticles: this.host + "/articleManagement/articles",
+      articlesURL: this.host + "/articleManagement/articles",
+      classificationsURL:this.host+"/articleManagement/classification",
       list: [],
       typeId:1,
-      classificationId:"",
+      classificationId:sessionStorage.getItem("classificationId")==null?this.classification:sessionStorage.getItem("classificationId"),
       total: 0,
       pageNumber: 1,
       pageSize: 10
     };
   },
+  computed:{
+    ...mapGetters(['classification'])
+  },
   methods: {
+     ...mapMutations(['changeSideBar','changeType']),
+
     handleSizeChange(val) {
       this.pageSize = val;
       this.search();
@@ -80,17 +88,15 @@ export default {
       console.log(`当前页: ${val}`);
     },
     search() {
-      let formdata = new FormData();
-      formdata.append("typeId", this.typeId);
-      if(this.classificationId!=""){
-           formdata.append("classificationId", this.classificationId);
+      var parameters={};
+      parameters["typeId"]=this.typeId;
+      if(this.classificationId!=0){
+            parameters["classificationId"]=this.classificationId;
       }
-      formdata.append("pageIndex ", this.pageNumber);
-      formdata.append("pageSize ", this.pageSize);
-      this.$axios({
-        url: this.getArticles,
-        data: formdata,
-        method: "get"
+      parameters["pageIndex"]=this.pageNumber;
+      parameters["pageSize"]=this.pageSize;
+      this.$axios.get(this.articlesURL, {
+        params:parameters
       }).then(res => {
         if (res.data.result.code == 0) {
           this.list = res.data.array;
@@ -108,10 +114,42 @@ export default {
 
         }
       });
+    },
+    getclassifications(){
+      let _this =this;
+      var parameters={};
+      parameters["typeId"]=this.typeId;
+      this.$axios.get(this.classificationsURL, {
+        params:parameters
+      }).then(res => {
+        if (res.data.result.code == 0) {
+          _this.changeSideBar(res.data.array);
+        } else if (res.data.result.code == 1) {
+          this.$message({
+            type: "warning",
+            message: res.data.result.info
+          });
+        }else if(res.data.result.code == -1){
+         this.$message({
+            type: "warning",
+            message: res.data.result.developInfo
+          });
+        }
+      });
     }
   },
   mounted() {
     this.search();
+    this.getclassifications();
+    this.changeType(this.typeId)
+  },
+   watch: {
+     '$route' (to, from) { //监听路由是否变化
+     if(this.$route.params.classificationId!=null){// 判断条件1  判断传递值的变化
+       this.classificationId=this.$route.params.classificationId;
+      this.search();
+     }
+   }
   }
 };
 </script>
@@ -124,7 +162,7 @@ export default {
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   background: #fff;
-  border-radius: 4px;
+  border-radius: 3px;
   line-height: 30px;
   margin-top: 2em;
   pointer-events: auto;
