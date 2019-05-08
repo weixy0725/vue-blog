@@ -1,9 +1,14 @@
 <template>
   <el-row class="tac test">
     <el-col :span="20">
-      <span style="color:#557e6e">文章分类</span>
+      <!-- <span style="color:#557e6e">分类</span> -->
       <el-menu default-active class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
-        <el-menu-item :index="bar.classificationId" @click="test" v-for="bar in barContent" v-bind:key="bar.classificationId">
+        <el-menu-item
+          :index="bar.classificationId"
+          @click="test"
+          v-for="bar in barContent"
+          v-bind:key="bar.classificationId"
+        >
           <span slot="title">{{bar.classification}}</span>
         </el-menu-item>
       </el-menu>
@@ -13,19 +18,18 @@
 
 
 <script>
-import { mapGetters,mapMutations} from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 export default {
-   data() {
+  data() {
     return {
-     
     };
   },
-  inject:['reload'],
+  inject: ["reload"],
   computed: {
-    ...mapGetters(["barContent",'type'])
+    ...mapGetters(["barContent", "type"])
   },
   methods: {
-    ...mapMutations(['changeClassification']),
+    ...mapMutations(["changeClassification"]),
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -33,11 +37,9 @@ export default {
       console.log(key, keyPath);
     },
     test(key) {
-      var classificationId=key.index;
-     sessionStorage.setItem("classificationId",classificationId);
-       if(this.type==1){          
-           this.reload();
-       }
+      var classificationId = key.index;
+      sessionStorage.setItem("classificationId", classificationId);
+      this.reload();
     }
   }
 };
@@ -52,18 +54,16 @@ export default {
   text-align: right;
 }
 
- .el-menu-vertical-demo{
+.el-menu-vertical-demo {
   margin-top: 2em;
-} 
-
+}
 </style>
 
 <style>
- .el-menu-item{
-  color:#557e6e
+.el-menu-item {
+  color: #557e6e;
 }
 /* .el-menu-item.is-active {
     color:#557e6e
 } */
-
 </style>

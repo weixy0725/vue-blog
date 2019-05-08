@@ -142,15 +142,16 @@ export default {
     this.search();
     this.getclassifications();
     this.changeType(this.typeId)
-  },
-   watch: {
-     '$route' (to, from) { //监听路由是否变化
-     if(this.$route.params.classificationId!=null){// 判断条件1  判断传递值的变化
-       this.classificationId=this.$route.params.classificationId;
-      this.search();
-     }
-   }
   }
+  // ,
+  //  watch: {
+  //    '$route' (to, from) { //监听路由是否变化
+  //    if(this.$route.params.classificationId!=null){// 判断条件1  判断传递值的变化
+  //      this.classificationId=this.$route.params.classificationId;
+  //     this.search();
+  //    }
+  //  }
+  // }
 };
 </script>
 

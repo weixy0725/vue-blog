@@ -4,7 +4,7 @@ Vue.use(Vuex)
 
 const state = {
     barContent: [],
-    type: 0,
+    type: 1,
     classification: 0
     
 };
