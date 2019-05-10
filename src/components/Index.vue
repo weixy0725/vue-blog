@@ -165,8 +165,8 @@ export default {
   background: #fff;
   border-radius: 3px;
   line-height: 30px;
-  margin-top: 2em;
   pointer-events: auto;
+  margin-top: 1.5em;
 }
 
 .pagination-class {
