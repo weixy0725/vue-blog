@@ -1,5 +1,5 @@
 <template>
-  <el-row class="tac test">
+  <el-row class="test">
     <el-col :span="20">
       <!-- <span style="color:#557e6e">分类</span> -->
       <el-menu default-active class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
@@ -21,8 +21,7 @@
 import { mapGetters, mapMutations } from "vuex";
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   inject: ["reload"],
   computed: {
@@ -40,6 +39,9 @@ export default {
       var classificationId = key.index;
       sessionStorage.setItem("classificationId", classificationId);
       this.reload();
+    },
+    goBack() {
+      this.$router.push("/");
     }
   }
 };

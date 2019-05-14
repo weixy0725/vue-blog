@@ -68,11 +68,12 @@ export default {
       typeId: 2
     };
   },
+  inject: ["controlSideBar"],
   computed: {
     ...mapGetters(["classification"])
   },
   methods: {
-    ...mapMutations(["changeSideBar", "changeType"]),
+    ...mapMutations(["changeSideBar", "changeType","setRouterPath"]),
 
     handleSizeChange(val) {
       this.pageSize = val;
@@ -113,6 +114,8 @@ export default {
     //this.search();
     this.getclassifications();
     this.changeType(this.typeId);
+    this.setRouterPath("/drawAndDesign");
+    this.controlSideBar(true);
   }
 };
 </script>

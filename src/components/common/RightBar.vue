@@ -63,7 +63,7 @@ export default {
   line-height: 30px;
   margin-right: 2%;
   margin-left: 20%;
-  margin-top: 5%;
+  margin-top: 2em;
   pointer-events: auto;
 }
 

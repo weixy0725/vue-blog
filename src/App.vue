@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <vue-particles
-      color="#328989"
+      color="#97E0C2"
       :particleOpacity="0.7"
       :particlesNumber="90"
       shapeType="circle"
@@ -28,7 +28,8 @@
     <el-row class="page-size">
       <!-- <el-container class="page-size"> -->
       <el-col :span="4">
-        <side-bar></side-bar>
+        <side-bar v-if="isSideBarShow"></side-bar>
+        <content-side-bar v-if="!isSideBarShow"></content-side-bar>
       </el-col>
       <el-col :span="15">
         <el-main class="main-size">
@@ -36,7 +37,7 @@
         </el-main>
       </el-col>
       <el-col :span="5" style="margin-top:1%;">
-        <right-Bar></right-Bar>
+        <right-bar></right-bar>
       </el-col>
       <!-- </el-container>        -->
     </el-row>
@@ -48,6 +49,7 @@
 import header from "./components/common/Header.vue";
 import sideBar from "./components/common/SideBar.vue";
 import rightBar from "./components/common/RightBar.vue";
+import contentSideBar from "./components/common/ContentSideBar.vue"
 // import { functionDeclaration } from '@babel/types';
 
 export default {
@@ -55,16 +57,19 @@ export default {
   components: {
     headerNav: header,
     sideBar: sideBar,
-    rightBar: rightBar
+    rightBar: rightBar,
+    contentSideBar:contentSideBar
   },
   data() {
     return {
-      isRouterAlive: true
+      isRouterAlive: true,
+      isSideBarShow: true
     };
   },
   provide() {
     return {
-      reload: this.reload
+      reload: this.reload,
+      controlSideBar:this.controlSideBar
     };
   },
   created() {
@@ -91,6 +96,9 @@ export default {
       this.$nextTick(function() {
         this.isRouterAlive = true;
       });
+    },
+    controlSideBar(data){
+      this.isSideBarShow=data
     }
   }
 };

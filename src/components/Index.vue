@@ -71,11 +71,12 @@ export default {
       pageSize: 10
     };
   },
+  inject: ["controlSideBar"],
   computed:{
     ...mapGetters(['classification'])
   },
   methods: {
-     ...mapMutations(['changeSideBar','changeType']),
+     ...mapMutations(['changeSideBar','changeType','setRouterPath']),
 
     handleSizeChange(val) {
       this.pageSize = val;
@@ -141,7 +142,9 @@ export default {
   mounted() {
     this.search();
     this.getclassifications();
-    this.changeType(this.typeId)
+    this.changeType(this.typeId);
+    this.setRouterPath("/");
+    this.controlSideBar(true);
   }
   // ,
   //  watch: {
@@ -168,6 +171,7 @@ export default {
   pointer-events: auto;
   margin-top: 1.5em;
 }
+
 
 .pagination-class {
   margin-top: 30px;

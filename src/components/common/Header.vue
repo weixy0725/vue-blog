@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    :default-active="activeIndex"
+    :default-active="routerPath==''?this.$route.path:routerPath"
     class="el-menu-demo ceshi"
     mode="horizontal"
     @select="handleSelect"
@@ -14,12 +14,16 @@
 </template>
 
 <script>
+import { mapGetters} from "vuex";
 export default {
   data() {
     return {
-      activeIndex: this.$route.path,
+      //activeIndex: routerPath==''?this.$route.path:routerPath,
       router: true
     };
+  },
+  computed: {
+    ...mapGetters(["routerPath"])
   },
   methods: {
     handleSelect(key, keyPath) {

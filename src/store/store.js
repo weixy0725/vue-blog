@@ -5,14 +5,16 @@ Vue.use(Vuex)
 const state = {
     barContent: [],
     type: 1,
-    classification: 0
+    classification: 0,
+    routerPath:""
     
 };
 
 const getters = {
     barContent: state => state.barContent,
     type: state => state.type,
-    classification: state => state.classification
+    classification: state => state.classification,
+    routerPath: state=>state.routerPath
 };
 
 const mutations = {
@@ -36,6 +38,10 @@ const mutations = {
         var params={};
         params[""]
         state.classification = data
+    },
+
+    setRouterPath(state,data){
+       state.routerPath=data
     }
 
 };
