@@ -70,7 +70,7 @@ export default {
 }
 
 .first-item {
-  margin-left: 35%;
+  margin-left: 32.5%;
   width: 10%;
 }
 </style>
