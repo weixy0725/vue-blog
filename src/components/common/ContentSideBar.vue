@@ -8,16 +8,20 @@
 
 
 <script>
+import { mapGetters} from "vuex";
+
 export default {
   data() {
     return {
-        data:"/"
+        data:''
     };
   },
   computed: {
+    ...mapGetters(["goBackUrl"])
   },
   methods: {
     goBack(){
+      this.data=this.goBackUrl;
       this.$router.push(this.data);
     }
   }

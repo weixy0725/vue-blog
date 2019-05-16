@@ -24,7 +24,9 @@
               </div>
               <div class="extra">
                 <div class="item">
-                  <i class="el-icon-star-on"></i>&nbsp;{{i.classification}}
+                   <svg-icon name="leaf2" size="18"></svg-icon>
+                   &nbsp;{{i.classification}}
+                  <!-- <i class="el-icon-star-on"></i>&nbsp;{{i.classification}} -->
                 </div>
                 <div class="item">{{i.datetime}}</div>
                 <div class="item">
@@ -42,7 +44,7 @@
     <el-row class="pagination-class">
       <el-pagination
         background
-        layout="total,sizes,prev,pager,next,jumper"
+        layout="total,prev,pager,next,jumper"
         :total="total"
         :current-page="pageNumber"
         :page-sizes="[10, 20, 30]"
@@ -56,9 +58,13 @@
 
 <script>
 import {mapMutations,mapGetters} from 'vuex'
+import svgIcon from "./common/SvgIcon.vue"
 
 export default {
   name: "index",
+  components: {
+    svgIcon:svgIcon
+  },
   data() {
     return {
       articlesURL: this.host + "/articleManagement/articles",
@@ -250,6 +256,10 @@ a.header {
   font-size: 0.92857143em;
   color: #606266;
   padding-left: 0.6em;
+}
+
+.extra .item svg{
+  vertical-align: middle;
 }
 
 /* .extra .item a{

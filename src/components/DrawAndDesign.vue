@@ -10,52 +10,68 @@
                 class="header"
                 target="_self"
               >
-                <img src="../assets/test.jpg" class="img-size">
+                <img v-if="i.imgOne.cover==''" src="../assets/test.jpg" class="img-size">
+                <img v-else :src="'http://localhost:8089/'+i.imgOne.cover" class="img-size">
               </router-link>
               <div class="extra">
                 <div class="item">
-                  <a
-                    href="https://my.oschina.net/u/2478308?tab=newest&amp;catalogId=3387050"
-                    class="classification"
-                  >
-                    <i class="el-icon-star-off">{{i.imgOne.classification}}</i>
+                  <div v-if="i.imgOne.isOriginal==3" class="ui label copy">临摹</div>
+                  <div v-if="i.imgOne.isOriginal==2" class="ui label practice">练习</div>
+                  <div v-if="i.imgOne.isOriginal==1" class="ui label own">原创</div>
+                  <div v-if="i.imgOne.isOriginal==0" class="ui label other">转载</div>
+                </div>
+                <div class="item">
+                  <a href class="classification">
+                    <svg-icon name="leaf3" size="18"></svg-icon>
+                    {{i.imgOne.classification}}
+                    <!-- <i class="el-icon-star-off"> {{i.imgOne.classification}}</i> -->
                   </a>
                 </div>
                 <div class="item">
-                  <i class="el-icon-view"></i> {{i.imgOne.browseTimes}}
+                  <i class="el-icon-view"></i>
+                  {{i.imgOne.browseTimes}}
                 </div>
                 <div class="item">
                   <a href target="_blank">
-                    <i class="el-icon-edit-outline"></i> {{i.imgOne.messageCount}}
+                    <i class="el-icon-edit-outline"></i>
+                    {{i.imgOne.messageCount}}
                   </a>
                 </div>
               </div>
             </div>
           </ElCol>
-         <ElCol :span="8" v-if="i.imgTwo!==undefined">
+          <ElCol :span="8" v-if="i.imgTwo!==undefined">
             <div class="img-content">
               <router-link
                 :to="{path:'/drawArticle', query: { articleId: i.imgTwo.articleId }}"
                 class="header"
                 target="_self"
               >
-                <img src="../assets/test.jpg" class="img-size">
+                <img v-if="i.imgTwo.cover==''" src="../assets/test.jpg" class="img-size">
+                <img v-else :src="'http://localhost:8089/'+i.imgTwo.cover" class="img-size">
               </router-link>
               <div class="extra">
                 <div class="item">
-                  <a
-                    href="https://my.oschina.net/u/2478308?tab=newest&amp;catalogId=3387050"
-                    class="classification"
-                  >
-                    <i class="el-icon-star-off">{{i.imgTwo.classification}}</i>
+                  <div v-if="i.imgTwo.isOriginal==3" class="ui label copy">临摹</div>
+                  <div v-if="i.imgTwo.isOriginal==2" class="ui label practice">练习</div>
+                  <div v-if="i.imgTwo.isOriginal==1" class="ui label own">原创</div>
+                  <div v-if="i.imgTwo.isOriginal==0" class="ui label other">转载</div>
+                </div>
+                <div class="item">
+                  <a href class="classification">
+                    <svg-icon name="leaf3" size="18"></svg-icon>
+                     {{i.imgTwo.classification}}
+                    <!-- <i class="el-icon-star-off"> {{i.imgTwo.classification}}</i> -->
                   </a>
                 </div>
                 <div class="item">
-                  <i class="el-icon-view"></i> {{i.imgTwo.browseTimes}}
+                  <i class="el-icon-view"></i>
+                  {{i.imgTwo.browseTimes}}
                 </div>
                 <div class="item">
                   <a href target="_blank">
-                    <i class="el-icon-edit-outline"></i> {{i.imgTwo.messageCount}}
+                    <i class="el-icon-edit-outline"></i>
+                    {{i.imgTwo.messageCount}}
                   </a>
                 </div>
               </div>
@@ -68,23 +84,31 @@
                 class="header"
                 target="_self"
               >
-                <img src="../assets/test.jpg" class="img-size">
+                <img v-if="i.imgThree.cover==''" src="../assets/test.jpg" class="img-size">
+                <img v-else :src="'http://localhost:8089/'+i.imgThree.cover" class="img-size">
               </router-link>
               <div class="extra">
                 <div class="item">
-                  <a
-                    href="https://my.oschina.net/u/2478308?tab=newest&amp;catalogId=3387050"
-                    class="classification"
-                  >
-                    <i class="el-icon-star-off">{{i.imgThree.classification}}</i>
+                  <div v-if="i.imgThree.isOriginal==3" class="ui label copy">临摹</div>
+                  <div v-if="i.imgThree.isOriginal==2" class="ui label practice">练习</div>
+                  <div v-if="i.imgThree.isOriginal==1" class="ui label own">原创</div>
+                  <div v-if="i.imgThree.isOriginal==0" class="ui label other">转载</div>
+                </div>
+                <div class="item">
+                  <a href class="classification">
+                    <svg-icon name="leaf3" size="18"></svg-icon>
+                     {{i.imgThree.classification}}
+                    <!-- <i class="el-icon-star-off"> {{i.imgThree.classification}}</i> -->
                   </a>
                 </div>
                 <div class="item">
-                  <i class="el-icon-view"></i> {{i.imgThree.browseTimes}}
+                  <i class="el-icon-view"></i>
+                  {{i.imgThree.browseTimes}}
                 </div>
                 <div class="item">
                   <a href target="_blank">
-                    <i class="el-icon-edit-outline"></i> {{i.imgThree.messageCount}}
+                    <i class="el-icon-edit-outline"></i>
+                    {{i.imgThree.messageCount}}
                   </a>
                 </div>
               </div>
@@ -94,13 +118,13 @@
       </li>
     </ul>
     <ElRow class="pagination-class">
-      <ElCol :span="10" :offset="7">
+      <ElCol :span="10" :offset="8">
         <el-pagination
           background
-          layout="total,sizes,prev,pager,next,jumper"
+          layout="total,prev,pager,next,jumper"
           :total="total"
           :current-page="pageNumber"
-          :page-sizes="[18, 36, 54]"
+          :page-sizes="[15, 30, 45]"
           :page-size="pageSize"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
@@ -112,8 +136,12 @@
 
 <script>
 import { mapMutations, mapGetters } from "vuex";
+import svgIcon from "./common/SvgIcon.vue"
 
 export default {
+  components: {
+    svgIcon:svgIcon
+  },
   data() {
     return {
       articlesURL: this.host + "/articleManagement/articles",
@@ -124,20 +152,9 @@ export default {
           : sessionStorage.getItem("classificationId"),
       total: 0,
       pageNumber: 1,
-      pageSize: 18,
+      pageSize: 15,
       typeId: 2,
       list: []
-        // {
-        //   imgOne:{
-        //     articleId:1
-
-        //   },
-        //   imgTwo:{
-        //       articleId:2
-        //   },imgThree:{
-        //       articleId:3
-        //   }
-        //   }]
     };
   },
   inject: ["controlSideBar"],
@@ -158,7 +175,7 @@ export default {
       console.log(`当前页: ${val}`);
     },
     search() {
-      let _this=this;
+      let _this = this;
       var parameters = {};
       parameters["typeId"] = this.typeId;
       if (this.classificationId != 0) {
@@ -174,7 +191,7 @@ export default {
           if (res.data.result.code == 0) {
             var temp = res.data.array;
             var group = {};
-            var test=[];
+            var test = [];
             for (var i = 0; i < temp.length; i++) {
               group["imgOne"] = temp[i];
               if (i + 1 < temp.length) {
@@ -185,12 +202,10 @@ export default {
               }
               i = i + 2;
               test.push(group);
-              group = {}; 
+              group = {};
             }
             _this.total = res.data.object.count;
-            _this.list=test;
-            console.log(test);
-            console.log(_this.list);
+            _this.list = test;
           } else if (res.data.result.code == 1) {
             this.$message({
               type: "warning",
@@ -229,11 +244,10 @@ export default {
         });
     }
   },
-  created(){
-      this.search();
+  created() {
+    this.search();
   },
   mounted() {
-    
     this.getclassifications();
     this.changeType(this.typeId);
     this.setRouterPath("/drawAndDesign");
@@ -263,6 +277,7 @@ export default {
   /* padding-right: 20px;
         padding-left: 20px; */
   margin-top: 5%;
+  pointer-events: auto;
 }
 
 .img-size {
@@ -277,7 +292,7 @@ export default {
 .pagination-class {
   position: relative;
   display: block;
-  margin-top: 5%;
+  margin-top: 8%;
   pointer-events: auto;
 }
 
@@ -293,13 +308,54 @@ export default {
 }
 
 .extra :not(:first-child) {
-  padding-left: 6%;
+  padding-left: 5%;
 }
 
 .extra .item a {
   text-decoration: none;
   cursor: pointer;
   color: #606266;
+}
+
+.extra .item svg{
+  vertical-align: middle;
+}
+
+.ui.label {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: baseline;
+  margin: 0 0.14285714em;
+  background-image: none;
+  padding: 0.55em 1em;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 0.8em;
+  border: 0 solid transparent;
+  border-radius: 0.14285714rem;
+  -webkit-transition: background 0.1s ease;
+  transition: background 0.1s ease;
+  color: #fff !important;
+}
+
+.ui.label.own {
+  background-color: #77ac98 !important;
+  border-color: #77ac98 !important;
+}
+
+.ui.label.other {
+  background-color: #deab8a !important;
+  border-color: #deab8a !important;
+}
+
+.ui.label.practice {
+  background-color: #6babdf !important;
+  border-color: #6babdf !important;
+}
+
+.ui.label.copy {
+  background-color: #dad1cb !important;
+  border-color: #dad1cb !important;
 }
 </style>
 

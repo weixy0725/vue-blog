@@ -44,6 +44,7 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
+        exclude:[resolve('src/assets/svg')],
         options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
@@ -64,6 +65,21 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {loader: 'svg-sprite-loader', options: {}},
+          {loader: 'svgo-loader', options: {
+             plugins: [
+                // 还有很多配置，具体可以查看https://github.com/svg/svgo
+               { removeViewBox: false },
+               { removeXMLNS: true }
+              ]
+            }
+           }
+        ],
+        include: [resolve('src/assets/svg')] // 把上面去掉的文件夹include进来
       }
     ]
   },

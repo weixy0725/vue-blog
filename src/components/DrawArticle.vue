@@ -1,6 +1,8 @@
 <template>
   <div class="content-class">
     <div class="article-header">
+      <div v-if="isOriginal==3" class="ui label copy">临摹</div>
+      <div v-if="isOriginal==2" class="ui label practice">练习</div>
       <div v-if="isOriginal==1" class="ui label own">原创</div>
       <div v-if="isOriginal==0" class="ui label other">转载</div>
       {{articleName}}
@@ -28,7 +30,7 @@ export default {
   inject: ["controlSideBar"],
   computed: {},
   methods: {
-    ...mapMutations(['setGoBackUrl']),
+       ...mapMutations(['setGoBackUrl']),
     getArticle() {
       let _this = this;
       var parameters = {};
@@ -60,7 +62,7 @@ export default {
   mounted() {
     this.controlSideBar(false);
     this.getArticle();
-    this.setGoBackUrl("/");
+    this.setGoBackUrl("/drawAndDesign");
   }
 };
 </script>
@@ -113,9 +115,20 @@ export default {
   border-color: #deab8a !important;
 }
 
+.ui.label.practice {
+  background-color: #6babdf !important;
+  border-color: #6babdf !important;
+}
+
+.ui.label.copy {
+  background-color: #dad1cb !important;
+  border-color: #dad1cb !important;
+}
+
 .article-header:not(.ui) {
   font-size: 1.3em;
   color: rgba(46, 45, 45, 0.85);
   font-weight: 550;
 }
 </style>
+ 

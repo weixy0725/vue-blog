@@ -6,7 +6,8 @@ const state = {
     barContent: [],
     type: 1,
     classification: 0,
-    routerPath:""
+    routerPath:"",
+    goBackUrl:""
     
 };
 
@@ -14,7 +15,8 @@ const getters = {
     barContent: state => state.barContent,
     type: state => state.type,
     classification: state => state.classification,
-    routerPath: state=>state.routerPath
+    routerPath: state=>state.routerPath,
+    goBackUrl:state=>state.goBackUrl
 };
 
 const mutations = {
@@ -42,6 +44,10 @@ const mutations = {
 
     setRouterPath(state,data){
        state.routerPath=data
+    },
+
+    setGoBackUrl(state,data){
+         state.goBackUrl=data
     }
 
 };

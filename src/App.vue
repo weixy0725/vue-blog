@@ -113,7 +113,7 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
   /* position: relative; */
-  min-width: 900px;
+  min-width: 1100px;
 }
 
 .header-fixed {

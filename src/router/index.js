@@ -5,6 +5,7 @@ import drawAndDesign from '@/components/DrawAndDesign'
 import literature from '@/components/Literature'
 import travel from '@/components/Travel'
 import article from '@/components/Article'
+import drawArticle from '@/components/DrawArticle'
 
 Vue.use(Router)
 
@@ -32,7 +33,10 @@ export default new Router({
       path:'/article',
       name:'文章内容',
       component:article
-
+    },{
+      path:'/drawArticle',
+      name:'插画与设计文章内容',
+      component:drawArticle
     }
   ]
 })
