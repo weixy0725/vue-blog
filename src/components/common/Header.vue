@@ -47,7 +47,7 @@ export default {
 } */
 
 .ceshi {
-  background-color: #77ac98;
+  background-color: #72a792;
   pointer-events: auto;
 }
 
@@ -59,12 +59,12 @@ export default {
 
 .el-menu-item:not(.is-disabled):hover,
 .el-menu-item:not(.is-disabled):focus {
-  background-color: #77ac98;
+  background-color: #72a792;
   color: #fcf16e;
 }
 
 .el-menu-item.is-active {
-  background-color: #77ac98;
+  background-color: #72a792;
   border-bottom: 2.5px solid #fcf16e;
   color: #fcf16e;
 }

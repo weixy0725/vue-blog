@@ -113,7 +113,7 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
   /* position: relative; */
-  min-width: 1100px;
+  min-width: 1300px;
 }
 
 .header-fixed {
@@ -122,7 +122,7 @@ export default {
   left: 0;
   top: 0;
   z-index: 100;
-  background-color: #77ac98;
+  background-color: #72a792;
   pointer-events: none;
 }
 

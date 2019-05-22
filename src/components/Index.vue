@@ -14,6 +14,9 @@
                 <div v-if="i.isOriginal==0" class="ui label other">转载</div>
                 {{i.articleName}}
               </router-link>
+              <div class="divider-class">
+              <el-divider ></el-divider>
+              </div>
               <div class="description">
                 <router-link
                   :to="{path:'/article', query: { articleId: i.articleId }}"
@@ -188,7 +191,7 @@ a.header {
   display: block;
   text-decoration: none;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .ui.label {
@@ -228,7 +231,7 @@ a.header {
 
 .description {
   display: block;
-  margin-top: 2em;
+  margin-top: 1em;
   margin-left: 1em;
   margin-right: 1em;
   max-width: auto;
@@ -272,6 +275,10 @@ a.header {
 .extra .item i {
   color: #6d8346;
   font-size: 1.2em;
+}
+.divider-class{
+  padding-left: 10%;
+  margin-right: 10%;
 }
 </style>
 

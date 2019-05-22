@@ -12,8 +12,11 @@
           <img src="../../assets/oschina.png" class="icon-class">
         </a>
       </div>
-      <div>
-          <p>简单生活</p>
+      <div class="introduce">
+          <label style="text-align:center">个人介绍</label>
+          <p style="text-indent:2em;text-align:left">主要从事Java后端开发工作,同时对前端开发感兴趣,希望可以成为一个优秀的全栈工程师ヾ(✿ﾟ▽ﾟ)ノ</p>
+          <label style="text-align:center">联系方式</label>
+          <p style="text-align:center">weixinyuan@aliyun.com</p>
       </div>
     </div>
     <div v-if="type==2">
@@ -25,8 +28,11 @@
         <a href="https://www.zcool.com.cn/u/19208618" target="_blank">
           <img src="../../assets/zzcool.png" class="icon-class">
         </a>
-        <div>
-          <p>测试</p>
+        <div class="introduce">
+          <label style="text-align:center">个人介绍</label>
+          <p style="text-indent:2em;text-align:left">插画与设计爱好者，目前是还在入门阶段的小透明ヾ(◍°∇°◍)ﾉﾞ</p>
+          <label style="text-align:center">联系方式</label>
+          <p style="text-align:center">weixinyuan@aliyun.com</p>
       </div>
       </div>
     </div>
@@ -92,6 +98,12 @@ export default {
   height: 20px;
 }
 
+.introduce{
+  margin-top: 8%;
+  margin-left: 10%;
+  margin-right: 10%;
+  color: #6d8346;
+}
 /*
     .icon-class:not(is-first){
          padding-left: 0.7em;
