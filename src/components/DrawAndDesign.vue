@@ -271,8 +271,8 @@ export default {
   border: 1px solid #e4e7ed;
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  background: #fff;
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 8px;
   line-height: 30px;
   /* padding-right: 20px;
         padding-left: 20px; */
@@ -283,10 +283,8 @@ export default {
 .img-size {
   position: relative;
   height: 80%;
-  width: 94%;
-  padding-left: 3%;
-  padding-right: 3%;
-  padding-top: 3%;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
 }
 
 .pagination-class {

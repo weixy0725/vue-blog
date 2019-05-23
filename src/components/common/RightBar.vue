@@ -61,10 +61,11 @@ export default {
   height: 700px;
   min-width: 200px;
   color: #606266;
-  border: 1px solid #e4e7ed;
+  /* border: 1px solid #e4e7ed;
+  border-width: 0px 0 0 1px; */
   /* -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1); */
-  background: #fff;
+  background: rgba(255,255,255,0);
   border-radius: 3px;
   line-height: 30px;
   margin-right: 2%;
@@ -85,7 +86,7 @@ export default {
 .name {
   display: block;
   padding-top: 1em;
-  color: #6d8346;
+  color: #223e36;
 }
 .all-icon-class {
   display: inline;
@@ -102,7 +103,7 @@ export default {
   margin-top: 8%;
   margin-left: 10%;
   margin-right: 10%;
-  color: #6d8346;
+  color: #223e36;
 }
 /*
     .icon-class:not(is-first){

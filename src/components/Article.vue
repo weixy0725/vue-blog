@@ -83,6 +83,11 @@ export default {
   margin-right: 40px;
   margin-top: 2em;
 }
+
+.content-style{
+  padding-left: 3%;
+  padding-right: 3%;
+}
 .content-style >>> img{
   width:90%;
 }

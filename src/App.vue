@@ -19,7 +19,7 @@
       style="position: fixed; width: 100%;height:100%;z-index=-1"
     ></vue-particles>
     <!-- <el-container style="width:100%"> -->
-    <el-row style="height:60px">
+    <el-row style="height:50px">
       <el-header class="header-fixed">
         <!-- 导航栏 -->
         <header-nav></header-nav>
@@ -122,7 +122,7 @@ export default {
   left: 0;
   top: 0;
   z-index: 100;
-  background-color: #72a792;
+  background-color: #223e36;
   pointer-events: none;
 }
 

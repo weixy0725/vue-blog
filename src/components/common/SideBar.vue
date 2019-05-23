@@ -59,11 +59,15 @@ export default {
 .el-menu-vertical-demo {
   margin-top: 2em;
 }
+
+.el-menu{
+  background-color: rgba(255, 255, 255, 0);
+}
 </style>
 
 <style>
 .el-menu-item {
-  color: #557e6e;
+  color: #223e36;
 }
 /* .el-menu-item.is-active {
     color:#557e6e

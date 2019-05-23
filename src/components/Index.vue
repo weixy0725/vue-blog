@@ -15,7 +15,7 @@
                 {{i.articleName}}
               </router-link>
               <div class="divider-class">
-              <el-divider ></el-divider>
+              <el-divider></el-divider>
               </div>
               <div class="description">
                 <router-link
@@ -171,11 +171,12 @@ export default {
 .row-size {
   height: 200px;
   color: #606266;
-  border: 1px solid #e4e7ed;
-  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  background: #fff;
-  border-radius: 3px;
+  border: 1px solid #0780622a;
+  /* border-width: 1px 0; */
+  -webkit-box-shadow: 0 5px 10px 0 rgba(14, 161, 117, 0.1);
+  box-shadow: 0 5px 10px 0 rgba(14, 161, 117, 0.048);
+  background: rgba(189, 231, 222, 0.075);
+  border-radius: 8px;
   line-height: 30px;
   pointer-events: auto;
   margin-top: 1.5em;
@@ -287,4 +288,9 @@ a.header {
   background-color: #77ac98;
   color: #fff;
 }
+
+/* .el-divider {
+    background-color: #0aa17b2d;
+    position: relative;
+} */
 </style>
