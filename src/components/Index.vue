@@ -171,12 +171,15 @@ export default {
 .row-size {
   height: 200px;
   color: #606266;
-  border: 1px solid #0780622a;
+  border: 1px solid #07806252;
+  /* border: 1px solid #0780622a; */
   /* border-width: 1px 0; */
   -webkit-box-shadow: 0 5px 10px 0 rgba(14, 161, 117, 0.1);
   box-shadow: 0 5px 10px 0 rgba(14, 161, 117, 0.048);
-  background: rgba(189, 231, 222, 0.075);
-  border-radius: 8px;
+  /* background: rgba(189, 231, 222, 0.075);  */
+  /* background: #54948215;  */
+  background:rgba(255, 255, 255, 0);
+  border-radius: 5px;
   line-height: 30px;
   pointer-events: auto;
   margin-top: 1.5em;

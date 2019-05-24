@@ -4,7 +4,7 @@
       color="#97E0C2"
       :particleOpacity="0.7"
       :particlesNumber="90"
-      shapeType="circle"
+      shapeType="triangle"
       :particleSize="4"
       linesColor="#328989"
       :linesWidth="1"
@@ -42,6 +42,7 @@
       <!-- </el-container>        -->
     </el-row>
     <!-- </el-container> -->
+    <el-footer style="color:#223e36">Copyright ©2019 weixinyuan</el-footer>
   </div>
 </template>
 

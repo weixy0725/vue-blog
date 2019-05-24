@@ -272,7 +272,7 @@ export default {
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   background: rgba(255, 255, 255, 0);
-  border-radius: 8px;
+  border-radius: 5px;
   line-height: 30px;
   /* padding-right: 20px;
         padding-left: 20px; */
@@ -284,7 +284,7 @@ export default {
   position: relative;
   height: 80%;
   width: 100%;
-  border-radius: 8px 8px 0 0;
+  border-radius: 5px 5px 0 0;
 }
 
 .pagination-class {
