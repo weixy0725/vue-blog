@@ -6,27 +6,35 @@ const state = {
     barContent: [],
     type: 1,
     classification: 0,
-    routerPath:"",
-    goBackUrl:""
-    
+    routerPath: "",
+    goBackUrl: ""
+
 };
 
 const getters = {
     barContent: state => state.barContent,
     type: state => state.type,
     classification: state => state.classification,
-    routerPath: state=>state.routerPath,
-    goBackUrl:state=>state.goBackUrl
+    routerPath: state => state.routerPath,
+    goBackUrl: state => state.goBackUrl
 };
 
 const mutations = {
     changeSideBar(state, data) {
 
-        var barContentDefault=[{
-            "classificationId":"0",
-            "classification":"所有内容"
-        }];
-        for(let d of data){
+        var barContentDefault = [];
+        if (state.type == 1) {
+            barContentDefault.push({
+                "classificationId": "-1",
+                "classification": "所有文章"
+            });
+        } else if (state.type == 2) {
+            barContentDefault.push({
+                "classificationId": "-2",
+                "classification": "所有作品"
+            })
+        }
+        for (let d of data) {
             barContentDefault.push(d);
         }
         state.barContent = barContentDefault
@@ -37,17 +45,17 @@ const mutations = {
     },
 
     changeClassification(state, data) {
-        var params={};
+        var params = {};
         params[""]
         state.classification = data
     },
 
-    setRouterPath(state,data){
-       state.routerPath=data
+    setRouterPath(state, data) {
+        state.routerPath = data
     },
 
-    setGoBackUrl(state,data){
-         state.goBackUrl=data
+    setGoBackUrl(state, data) {
+        state.goBackUrl = data
     }
 
 };

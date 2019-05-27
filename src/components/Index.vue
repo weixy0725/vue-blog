@@ -100,7 +100,7 @@ export default {
     search() {
       var parameters={};
       parameters["typeId"]=this.typeId;
-      if(this.classificationId!=0){
+      if(this.classificationId>0){
             parameters["classificationId"]=this.classificationId;
       }
       parameters["pageIndex"]=this.pageNumber;

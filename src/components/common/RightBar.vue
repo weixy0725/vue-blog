@@ -1,6 +1,6 @@
 <template>
   <div class="info-all">
-    <img src="../../assets/logo.png" class="head-img">
+    <img src="../../assets/girl.png" class="head-img">
     <span class="name">Ayuan</span>
     <div v-if="type==1">
       <div class="all-icon-class">
@@ -16,7 +16,7 @@
           <label style="text-align:center">个人介绍</label>
           <p style="text-indent:2em;text-align:left">主要从事Java后端开发工作,同时对前端开发感兴趣,希望可以成为一个优秀的全栈工程师ヾ(✿ﾟ▽ﾟ)ノ</p>
           <label style="text-align:center">联系方式</label>
-          <p style="text-align:center">weixinyuan@aliyun.com</p>
+          <p style="text-align:center">weixy0725@aliyun.com</p>
       </div>
     </div>
     <div v-if="type==2">
@@ -32,7 +32,7 @@
           <label style="text-align:center">个人介绍</label>
           <p style="text-indent:2em;text-align:left">插画与设计爱好者，目前是还在入门阶段的小透明ヾ(◍°∇°◍)ﾉﾞ</p>
           <label style="text-align:center">联系方式</label>
-          <p style="text-align:center">weixinyuan@aliyun.com</p>
+          <p style="text-align:center">weixy0725@aliyun.com</p>
       </div>
       </div>
     </div>

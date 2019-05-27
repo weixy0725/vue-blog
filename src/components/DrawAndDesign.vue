@@ -11,7 +11,7 @@
                 target="_self"
               >
                 <img v-if="i.imgOne.cover==''" src="../assets/test.jpg" class="img-size">
-                <img v-else :src="'http://localhost:8089/'+i.imgOne.cover" class="img-size">
+                <img v-else :src="'http://localhost:80/'+i.imgOne.cover" class="img-size">
               </router-link>
               <div class="extra">
                 <div class="item">
@@ -48,7 +48,7 @@
                 target="_self"
               >
                 <img v-if="i.imgTwo.cover==''" src="../assets/test.jpg" class="img-size">
-                <img v-else :src="'http://localhost:8089/'+i.imgTwo.cover" class="img-size">
+                <img v-else :src="'http://localhost:80/'+i.imgTwo.cover" class="img-size">
               </router-link>
               <div class="extra">
                 <div class="item">
@@ -85,7 +85,7 @@
                 target="_self"
               >
                 <img v-if="i.imgThree.cover==''" src="../assets/test.jpg" class="img-size">
-                <img v-else :src="'http://localhost:8089/'+i.imgThree.cover" class="img-size">
+                <img v-else :src="'http://localhost:80/'+i.imgThree.cover" class="img-size">
               </router-link>
               <div class="extra">
                 <div class="item">
@@ -178,7 +178,7 @@ export default {
       let _this = this;
       var parameters = {};
       parameters["typeId"] = this.typeId;
-      if (this.classificationId != 0) {
+      if (this.classificationId>0) {
         parameters["classificationId"] = this.classificationId;
       }
       parameters["pageIndex"] = this.pageNumber;
