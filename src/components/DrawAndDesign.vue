@@ -11,7 +11,7 @@
                 target="_self"
               >
                 <img v-if="i.imgOne.cover==''" src="../assets/test.jpg" class="img-size">
-                <img v-else :src="'http://localhost:80/'+i.imgOne.cover" class="img-size">
+                <img v-else :src="'http://39.105.221.186:80/'+i.imgOne.cover" class="img-size">
               </router-link>
               <div class="extra">
                 <div class="item">
@@ -48,7 +48,7 @@
                 target="_self"
               >
                 <img v-if="i.imgTwo.cover==''" src="../assets/test.jpg" class="img-size">
-                <img v-else :src="'http://localhost:80/'+i.imgTwo.cover" class="img-size">
+                <img v-else :src="'http://39.105.221.186:80/'+i.imgTwo.cover" class="img-size">
               </router-link>
               <div class="extra">
                 <div class="item">
@@ -85,7 +85,7 @@
                 target="_self"
               >
                 <img v-if="i.imgThree.cover==''" src="../assets/test.jpg" class="img-size">
-                <img v-else :src="'http://localhost:80/'+i.imgThree.cover" class="img-size">
+                <img v-else :src="'http://39.105.221.186:80/'+i.imgThree.cover" class="img-size">
               </router-link>
               <div class="extra">
                 <div class="item">
