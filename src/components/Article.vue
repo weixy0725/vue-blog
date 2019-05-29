@@ -85,8 +85,9 @@ export default {
 }
 
 .content-style{
-  padding-left: 3%;
-  padding-right: 3%;
+  padding-left: 4%;
+  padding-right: 4%;
+  text-align: left;
 }
 .content-style >>> img{
   width:90%;

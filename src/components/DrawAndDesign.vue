@@ -282,9 +282,11 @@ export default {
 
 .img-size {
   position: relative;
-  height: 80%;
-  width: 100%;
-  border-radius: 5px 5px 0 0;
+  max-height: 100%;
+  max-width: 100%;
+  /* border-radius: 5px 5px 0 0; */
+  vertical-align: middle;
+  overflow: hidden;
 }
 
 .pagination-class {
@@ -296,7 +298,7 @@ export default {
 
 .extra {
   font-size: 0.92857143em;
-  margin-top: 2px;
+  margin-top: 10px;
 }
 
 .extra .item {
