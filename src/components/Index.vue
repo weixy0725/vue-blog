@@ -12,6 +12,7 @@
               >
                 <div v-if="i.isOriginal==1" class="ui label own">原创</div>
                 <div v-if="i.isOriginal==0" class="ui label other">转载</div>
+                <div v-if="i.isOriginal==4" class="ui label learn">学习</div>
                 {{i.articleName}}
               </router-link>
               <div class="divider-class">
@@ -225,6 +226,11 @@ a.header {
 .ui.label.other {
   background-color: #deab8a !important;
   border-color: #deab8a !important;
+}
+
+.ui.label.learn {
+  background-color: #de8a91 !important;
+  border-color: #de8a91 !important;
 }
 
 .header:not(.ui) {

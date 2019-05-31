@@ -21,7 +21,7 @@ import router from './router'
 
 Vue.prototype.$axios = axios;
 
-Vue.prototype.host = '';
+Vue.prototype.host = '/api';
 
 window.router=router
 

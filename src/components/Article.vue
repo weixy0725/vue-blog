@@ -3,13 +3,20 @@
     <div class="article-header">
       <div v-if="isOriginal==1" class="ui label own">原创</div>
       <div v-if="isOriginal==0" class="ui label other">转载</div>
+      <div v-if="isOriginal==4" class="ui label learn">学习</div>
       {{articleName}}
       <el-divider></el-divider>
     </div>
-
-    <div></div>
     <div class="content-style">
     <div v-html="articleContent"></div>
+    <div class="content-footer">
+      <label>浏览次数：</label>
+      <span>{{browseTimes}}</span>
+      <label>留言数量：</label>
+      <span>{{messageCount}}</span>
+      <label>发布日期：</label>
+      <span>{{datetime}}</span>
+    </div>
     </div>
   </div>
 </template>
@@ -22,7 +29,10 @@ export default {
       articleURL: this.host + "/articleManagement/article",
       articleName: "",
       articleContent: "",
-      isOriginal: 2
+      isOriginal: 2,
+      browseTimes:0,
+      datetime:'',
+      messageCount:0
     };
   },
   inject: ["controlSideBar"],
@@ -42,6 +52,9 @@ export default {
             this.articleName = res.data.object.articleName;
             this.articleContent = res.data.object.articleContent;
             this.isOriginal = res.data.object.isOriginal;
+            this.browseTimes=res.data.object.browseTimes;
+            this.datetime=res.data.object.datetime;
+            this.messageCount=res.data.object.messageCount;
           } else if (res.data.result.code == 1) {
             this.$router.push("/");
             this.$message({
@@ -67,7 +80,7 @@ export default {
 
 <style scoped>
 .content-class {
-  min-height: 1800px;
+  min-height: 100%;
   color: #606266;
   border: 1px solid #e4e7ed;
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
@@ -88,6 +101,7 @@ export default {
   padding-left: 4%;
   padding-right: 4%;
   text-align: left;
+  padding-bottom: 80px;
 }
 .content-style >>> img{
   width:90%;
@@ -119,9 +133,22 @@ export default {
   border-color: #deab8a !important;
 }
 
+.ui.label.learn {
+  background-color: #de8a91 !important;
+  border-color: #de8a91 !important;
+}
+
 .article-header:not(.ui) {
   font-size: 1.3em;
   color: rgba(46, 45, 45, 0.85);
   font-weight: 550;
+}
+
+.content-footer{
+   text-align: right;
+   height: 50px;
+   margin-bottom: -80px;
+   font-size: 0.5em;
+   color: #606266
 }
 </style>
