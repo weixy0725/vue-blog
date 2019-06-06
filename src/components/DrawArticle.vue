@@ -69,7 +69,7 @@ export default {
 
 <style scoped>
 .content-class {
-  min-height: 1800px;
+  min-height: 100%;
   color: #606266;
   border: 1px solid #e4e7ed;
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
