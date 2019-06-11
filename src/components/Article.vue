@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="message-class">
+    <div class="mes-class">
       <div>
         <el-button
           type="info"
@@ -27,9 +27,24 @@
           plain
           @click="dialogVisible = true"
         >留 言</el-button>
+        <ul style="list-style-type: none;">
+          <li v-for="i in list" v-bind:key="i.id">
+            <div v-if="i.type==0" class="response-class">
+              <label class="ui label blog-owner">文章作者</label>
+              <span style="padding-left:2em;font-size: 0.5em;">{{i.datetime}}</span>
+              <div class="response-content">
+                <label class="response-person">@{{i.ip}}</label>
+                {{i.message}}
+              </div>
+            </div>
+            <div v-else class="message-class">
+              <label class="ui label per">{{i.ip}}</label>
+              <span style="padding-left:2em;font-size: 0.5em;">{{i.datetime}}</span>
+              <div class="message-content">{{i.message}}</div>
+            </div>
+          </li>
+        </ul>
       </div>
-      <!-- <li v-for="i in list" v-bind:key="i.id"> -->
-      <!-- <el-divider></el-divider> -->
     </div>
     <el-dialog title="留 言" :visible.sync="dialogVisible" width="50%" :modal-append-to-body="false">
       <el-input
@@ -53,6 +68,7 @@ export default {
     return {
       articleURL: this.host + "/articleManagement/article",
       saveMessageURL: this.host + "/messageManagement/message",
+      getMessageURL: this.host + "/messageManagement/message",
       articleName: "",
       articleContent: "",
       isOriginal: 2,
@@ -61,7 +77,8 @@ export default {
       messageCount: 0,
       dialogVisible: false,
       textarea: "",
-      articleId: ""
+      articleId: "",
+      list: []
     };
   },
   inject: ["controlSideBar"],
@@ -107,31 +124,57 @@ export default {
         formData.append("message", this.textarea);
         formData.append("type", 1); //留言的type为1
         formData.append("articleId", this.articleId);
-        this.$axios
-          .post(this.saveMessageURL,formData)
-          .then(res => {
-            if (res.data.result.code == 0) {
-              this.dialogVisible = false;
-              this.$message.info("留言成功");
-            } else if (res.data.result.code == 1) {
-              this.$message({
-                type: "warning",
-                message: res.data.result.info
-              });
-            } else if (res.data.result.code == -1) {
-              this.$message({
-                type: "warning",
-                message: res.data.result.developInfo
-              });
-            }
-          });
+        this.$axios.post(this.saveMessageURL, formData).then(res => {
+          if (res.data.result.code == 0) {
+            this.dialogVisible = false;
+            this.$message.info("留言成功");
+            this.textarea="";
+            this.getMessage();
+          } else if (res.data.result.code == 1) {
+            this.$message({
+              type: "warning",
+              message: res.data.result.info
+            });
+          } else if (res.data.result.code == -1) {
+            this.$message({
+              type: "warning",
+              message: res.data.result.developInfo
+            });
+          }
+        });
       }
+    },
+    getMessage() {
+      let _this = this;
+      var parameters = {};
+      parameters["articleId"] = this.articleId;
+      this.$axios
+        .get(this.getMessageURL, {
+          params: parameters
+        })
+        .then(res => {
+          if (res.data.result.code == 0) {
+            this.list = res.data.array;
+          } else if (res.data.result.code == 1) {
+            this.$router.push("/");
+            this.$message({
+              type: "warning",
+              message: res.data.result.info
+            });
+          } else if (res.data.result.code == -1) {
+            this.$message({
+              type: "warning",
+              message: res.data.result.developInfo
+            });
+          }
+        });
     }
   },
   mounted() {
     this.controlSideBar(false);
     this.getArticle();
     this.setGoBackUrl("/");
+    this.getMessage();
   }
 };
 </script>
@@ -214,7 +257,7 @@ export default {
   color: #606266;
 }
 
-.message-class {
+.mes-class {
   min-height: 80px;
   color: #606266;
   border: 1px solid #e4e7ed;
@@ -225,5 +268,60 @@ export default {
   line-height: 30px;
   margin-top: 2em;
   pointer-events: auto;
+}
+
+/* .divider-class{
+  padding-left: 10%;
+  margin-right: 10%;
+} */
+
+.response-class {
+  text-align: left;
+  width:80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-top: 1%;
+  border-top:1px solid #d3d0cba9;
+  display:block;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.message-class {
+  text-align: left;
+  width:80%;
+  margin-left: 10%;
+  margin-left: 10%;
+  padding-top: 1%;
+  border-top:1px solid #d3d0cba9;
+  display:block;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.message-content {
+  text-indent: 2em;
+  line-height: 30px;
+}
+
+.response-content {
+  text-indent: 2em;
+  line-height: 30px;
+}
+
+.blog-owner {
+  font-size: 0.5em;
+  background-color: #138bc2e0 !important;
+  border-color: #138bc2e0 !important;
+}
+
+.per {
+  font-size: 0.5em;
+  background-color: #ce790aa9 !important;
+  border-color:  #ce790aa9 !important;
+}
+
+.response-person {
+  color: #ce790a !important;
 }
 </style>
