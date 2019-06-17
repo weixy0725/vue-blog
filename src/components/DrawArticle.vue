@@ -38,6 +38,18 @@
             </div>
           </li>
         </ul>
+        <div class="pagination-class">
+          <el-pagination
+            background
+            layout="total,prev,pager,next,jumper"
+            :total="total"
+            :current-page="pageNumber"
+            :page-sizes="[10, 20, 30]"
+            :page-size="pageSize"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          ></el-pagination>
+        </div>
       </div>
     </div>
     <el-dialog title="留 言" :visible.sync="dialogVisible" width="50%" :modal-append-to-body="false">
@@ -69,13 +81,26 @@ export default {
       dialogVisible: false,
       textarea: "",
       articleId: "",
-      list: []
+      list: [],
+      total: 0,
+      pageNumber: 1,
+      pageSize: 10
     };
   },
   inject: ["controlSideBar"],
   computed: {},
   methods: {
        ...mapMutations(['setGoBackUrl']),
+    handleSizeChange(val) {
+      this.pageSize = val;
+      this.getMessage();
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      this.pageNumber = val;
+      this.getMessage();
+      console.log(`当前页: ${val}`);
+    },
     getArticle() {
       let _this = this;
       var parameters = {};
@@ -135,7 +160,9 @@ export default {
     getMessage() {
       let _this = this;
       var parameters = {};
-      parameters["articleId"] = this.articleId;
+      parameters["articleId"] = this.articleId;    
+      parameters["pageIndex"]=this.pageNumber;
+      parameters["pageSize"]=this.pageSize;
       this.$axios
         .get(this.getMessageURL, {
           params: parameters
@@ -143,6 +170,7 @@ export default {
         .then(res => {
           if (res.data.result.code == 0) {
             this.list = res.data.array;
+            this.total = res.data.object.count;
           } else if (res.data.result.code == 1) {
             this.$router.push("/");
             this.$message({
@@ -301,5 +329,16 @@ export default {
 .response-person {
   color: #ce790a !important;
 }
+.pagination-class {
+  margin-top: 30px;
+  pointer-events: auto;
+  margin-bottom: 30px;
+}
 </style>
- 
+<style>
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background-color: #77ac98;
+  color: #fff;
+}
+
+</style>
